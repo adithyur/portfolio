@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react';
 import { FaChevronDown, FaNode, FaReact } from "react-icons/fa";
 import { GoTriangleRight } from "react-icons/go";
 import { RiTailwindCssFill } from "react-icons/ri";
@@ -21,10 +21,45 @@ function Home() {
         setActiveLink(link);
     };
 
+    const sections = useRef({
+        '#home': null,
+        '#about': null,
+        '#project': null,
+        '#contact': null
+    });
+
+    useEffect(() => {
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.25
+        };
+
+    const observerCallback = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setActiveLink(`#${entry.target.id}`);
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, options);
+
+    Object.values(sections.current).forEach(section => {
+        if (section) observer.observe(section);
+    });
+
+    return () => {
+        Object.values(sections.current).forEach(section => {
+            if (section) observer.unobserve(section);
+        });
+    };
+}, []);
+
 
   return (
     <div>
-        <div className='mx-2 md:mx-24 lg:mx-28 xl::mx-40'>
+        <div className='mx-2 md:mx-20 lg:mx-20 xl:mx-40'>
 
             {/* NAVBAR */}
             <div className='fixed top-0 left-0 right-0 z-50 bg-white'>
@@ -33,10 +68,26 @@ function Home() {
                         <img src={`${process.env.PUBLIC_URL}/adithyu.png`} className='h-8' alt="Logo" />
                     </div>
                     <div className='hidden md:flex'>
-                        <a href="#home" className="my-button1 mx-2">Home</a>
-                        <a href="#about" className="my-button mx-2">About</a>
-                        <a href="#project" className="my-button mx-2">Projects</a>
-                        <a href="#contact" className="my-button mx-2">Contact</a>
+                        <a 
+                            href="#home" 
+                            className={`mx-2 ${activeLink === '#home' ? 'my-button1' : 'my-button'}`}
+                            onClick={() => handleLinkClick('#home')}
+                        >Home</a>
+                        <a 
+                            href="#about" 
+                            className={`mx-2 ${activeLink === '#about' ? 'my-button1' : 'my-button'}`}
+                            onClick={() => handleLinkClick('#about')}
+                        >About</a>
+                        <a 
+                            href="#project" 
+                            className={`mx-2 ${activeLink === '#project' ? 'my-button1' : 'my-button'}`}
+                            onClick={() => handleLinkClick('#project')}
+                        >Projects</a>
+                        <a 
+                            href="#contact" 
+                            className={`mx-2 ${activeLink === '#contact' ? 'my-button1' : 'my-button'}`}
+                            onClick={() => handleLinkClick('#contact')}
+                        >Contact</a>
                     </div>
                     <div className="md:hidden">
                         <button
@@ -62,10 +113,10 @@ function Home() {
                 {mobileMenuOpen && (
                     <div className="md:hidden" id="mobile-menu">
                         <div className="px-2 pt-2 pb-3 space-y-1">
-                            <a href="#home" className="block px-3 py-2 text-base font-bold hover:text-black">Home</a>
-                            <a href="#about" className="block px-3 py-2 text-base font-bold hover:text-black">About</a>
-                            <a href="#project" className="block px-3 py-2 text-base font-bold hover:text-black">Projects</a>
-                            <a href="#contact" className="block px-3 py-2 text-base font-bold hover:text-black">Contact</a>
+                            <a href="#home" className={`block px-3 py-2 text-base font-bold ${activeLink === '#home' ? 'bg-black text-white' : 'text-black'}`}>Home</a>
+                            <a href="#about" className={`block px-3 py-2 text-base font-bold hover:text-black ${activeLink === '#about' ? 'bg-black text-white' : 'text-black'}`}>About</a>
+                            <a href="#project" className={`block px-3 py-2 text-base font-bold hover:text-black ${activeLink === '#project' ? 'bg-black text-white' : 'text-black'}`}>Projects</a>
+                            <a href="#contact" className={`block px-3 py-2 text-base font-bold hover:text-black ${activeLink === '#contact' ? 'bg-black text-white' : 'text-black'}`}>Contact</a>
                         </div>
                     </div>
                 )}
@@ -73,7 +124,7 @@ function Home() {
             {/* END OF NAVBAR */}
 
             {/* HOME */}
-            <div id='home'>
+            <div id='home' ref={el => sections.current['#home'] = el}>
                 <div className='bg-slate-100 mt-24 md:mt-20 lg:mt-32 xl:mt-20 h-[73vh] md:h-[75vh] xl:h-5/6 rounded-md flex flex-col items-center justify-center'>
                     <div>
                         <h1 className='pt-40 md:pt-52 lg:pt-60 text-4xl lg:text-7xl font-extrabold text-gray-800'>
@@ -100,8 +151,7 @@ function Home() {
             {/* END OF HOME */}
 
             {/* ABOUT */}
-            <div id='about' className='sm:mt-20 mt-16'>
-                <div className='flex '>
+            <div id='about' ref={el => sections.current['#about'] = el} className='flex sm:mt-20 mt-16'>
                 <div className='flex flex-col items-center h-2/3 w-auto hidden md:block'>
                     <img src={`${process.env.PUBLIC_URL}/adithyu.jpeg`} className='h-2/3 w-auto'/>
                     <div className='flex flex-col items-center justify-center mt-4'>
@@ -111,7 +161,7 @@ function Home() {
                         </p>
                     </div>
                 </div>
-                <div className='ms-2 md:ms-10 bg-green-200'>
+                <div className='ms-2 md:ms-10 '>
                     <div className="about-me-header">
                         <h1 className="tracking-morewide font-bold">ABOUT ME</h1>
                         <div className="line ms-5 bg-gray-500"></div>
@@ -130,7 +180,7 @@ function Home() {
                             I'm Adithyu R, a passionate front-end developer building impactful web experiences with the MERN stack. I specialize in crafting user interfaces with React.js, ensuring smooth performance and engaging interactions.
                         </p>
                     </div>
-                    <div className="flex flex-col hidden sm:block md:hidden xl:block xl:flex-row mt-5">
+                    <div className="flex flex-col md:flex-row mt-5">
                         <div className="p-4 md:flex-1">
                             <div className='flex items-center'>
                                 <h2 className="tracking-widest font-bold">Skills</h2>
@@ -179,14 +229,14 @@ function Home() {
                             <ul className="border-l-2 border-gray-500 pl-4 relative mt-4 md:mt-5 pr-2 md:-mr-2">
                                 <li className="relative pl-4 mb-2">
                                     <span className="absolute -left-6 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white border border-gray-500 rounded-full"></span>
-                                    <div className='flex justify-between mt-2 items-center'>
+                                    <div className='flex md:flex-col xl:flex-row justify-between mt-2 items-center'>
                                         <p className='bg-gray-200 flex items-center rounded-full px-2 h-8'>2021 - 2023</p>
                                         <p className='font-bold text-gray-800'>University of Kerala <br/> <span className='font-normal text-gray-500'>Master Degree</span></p>
                                     </div>
                                 </li>
                                 <li className="relative pl-4 mt-10">
                                     <span className="absolute -left-6 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white border border-gray-500 rounded-full"></span>
-                                    <div className='flex justify-between mt-2 items-center'>
+                                    <div className='flex md:flex-col xl:flex-row justify-between mt-2 items-center'>
                                         <p className='bg-gray-200 flex items-center rounded-full px-2 h-8'>2018 - 2021</p>
                                         <p className='font-bold text-gray-800'>University of Kerala <br/> <span className='font-normal text-gray-500'>Bachelor Degree</span></p>
                                     </div>
@@ -194,91 +244,18 @@ function Home() {
                             </ul>
                         </div>
                     </div>
-                    <div className='mt-5 flex justify-center hidden sm:block md:hidden xl:block'>
+                    <div className='mt-5 flex justify-center md:justify-start'>
                         <button className="dwnld-btn" type="button">
                             <span className="dwnld-btn-txt">Download CV</span>
                             <span className="dwnld-btn-icn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" className="svg"><path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z" /><path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z" /><path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z" /></svg></span>
                         </button>
                     </div>
                 </div>
-                </div>
-                    {/* TAB VIEW */}
-                    <div className="flex hidden sm:hidden md:block lg:block xl:hidden mt-5 bg-red-500">
-                        <div className="p-4 md:flex-1">
-                            <div className='flex items-center'>
-                                <h2 className="tracking-widest font-bold">Skills</h2>
-                                <div className="line ms-2 bg-gray-500 h-1"></div>
-                            </div>
-                            <ul>
-                                {/* <li className='flex items-center mt-4'>
-                                    <GoTriangleRight className='font-gray-500'/> React.js
-                                </li>
-                                <li className='flex items-center mt-2'>
-                                    <GoTriangleRight className='font-gray-500'/> Node.js (Express.js)
-                                </li>
-                                <li className='flex items-center mt-2'>
-                                    <GoTriangleRight className='font-gray-500'/> MongoDB
-                                </li>
-                                <li className='flex items-center mt-2'>
-                                    <GoTriangleRight className='font-gray-500'/> Tailwind CSS
-                                </li>
-                                <li className='flex items-center mt-2'>
-                                    <GoTriangleRight className='font-gray-500'/> Material-ui
-                                </li> */}
-
-                                <li className='flex items-center mt-4'>
-                                    <FaReact className='font-gray-500 me-2'/> React.js
-                                </li>
-                                <li className='flex items-center mt-2'>
-                                    <FaNode className='font-gray-500 me-2'/> Node.js (Express.js)
-                                </li>
-                                <li className='flex items-center mt-2'>
-                                    <SiMongodb className='font-gray-500 me-2'/> MongoDB
-                                </li>
-                                <li className='flex items-center mt-2'>
-                                    <RiTailwindCssFill className='font-gray-500 me-2'/> Tailwind CSS
-                                </li>
-                                <li className='flex items-center mt-2'>
-                                    <SiMui className='font-gray-500 me-2'/> Material-ui
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div className="p-4 md:flex-1 mt-4 md:mt-0 md:ml-4">
-                            <div className='flex items-center'>
-                                <h2 className="tracking-widest font-bold">Education</h2>
-                                <div className="line ms-2 bg-gray-500 h-1"></div>
-                            </div>
-                            <ul className="border-l-2 border-gray-500 pl-4 relative mt-4 md:mt-5 pr-2 md:-mr-2">
-                                <li className="relative pl-4 mb-2">
-                                    <span className="absolute -left-6 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white border border-gray-500 rounded-full"></span>
-                                    <div className='flex justify-between mt-2 items-center'>
-                                        <p className='bg-gray-200 flex items-center rounded-full px-2 h-8'>2021 - 2023</p>
-                                        <p className='font-bold text-gray-800'>University of Kerala <br/> <span className='font-normal text-gray-500'>Master Degree</span></p>
-                                    </div>
-                                </li>
-                                <li className="relative pl-4 mt-10">
-                                    <span className="absolute -left-6 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white border border-gray-500 rounded-full"></span>
-                                    <div className='flex justify-between mt-2 items-center'>
-                                        <p className='bg-gray-200 flex items-center rounded-full px-2 h-8'>2018 - 2021</p>
-                                        <p className='font-bold text-gray-800'>University of Kerala <br/> <span className='font-normal text-gray-500'>Bachelor Degree</span></p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className='mt-5 flex justify-center hidden sm:hidden md:block lg:block xl:hidden'>
-                        <button className="dwnld-btn" type="button">
-                            <span className="dwnld-btn-txt">Download CV</span>
-                            <span className="dwnld-btn-icn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" className="svg"><path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z" /><path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z" /><path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z" /></svg></span>
-                        </button>
-                    </div>
-                
             </div>
             {/* END OF ABOUT */}
 
             {/* PROJECT */}
-            <div id='project' className='mt-10 md:mt-16'>
+            <div id='project' ref={el => sections.current['#project'] = el} className='mt-10 md:mt-16'>
                 <div className='tracking-morewide font-bold flex items-center'>
                     <p className="mx-6">PROJECTS</p>
                     <div className="line bg-gray-500 h-1 flex-grow"></div>
@@ -318,7 +295,7 @@ function Home() {
             {/* END OF PROJECT */}
 
             {/* CONTACT */}
-            <div id='contact' className='mt-16'>
+            <div id='contact' ref={el => sections.current['#contact'] = el} className='mt-16'>
                 <div className='tracking-morewide font-bold flex items-center'>
                     <p className="mx-6">GET IN TOUCH</p>
                     <div className="line bg-gray-500 h-1 flex-grow"></div>
