@@ -1,13 +1,15 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { FaChevronDown, FaNode, FaReact } from "react-icons/fa";
+import emailjs from 'emailjs-com';
 import { GoTriangleRight } from "react-icons/go";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { SiMui, SiMongodb } from "react-icons/si";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt, FaLinkedinIn, FaGithub } from "react-icons/fa";
+import { IoLogoWhatsapp } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
-
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './styles.css';
 
 
@@ -55,6 +57,42 @@ function Home() {
         });
     };
 }, []);
+
+
+    const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const userID = process.env.REACT_APP_EMAILJS_USER_ID;
+
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: '',
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    
+        emailjs.send(
+            serviceID,
+            templateID,
+            formData,
+            userID
+        ).then((response) => {
+            //console.log('SUCCESS!', response.status, response.text);
+            toast.success('Form submitted successfully!');
+        }).catch((err) => {
+            //console.log('FAILED...', err);
+            toast.error('Form submission failed. Please try again.');
+        });
+    };
 
 
   return (
@@ -245,10 +283,12 @@ function Home() {
                         </div>
                     </div>
                     <div className='mt-5 flex justify-center md:justify-start'>
-                        <button className="dwnld-btn" type="button">
+                        <a 
+                            href={`${process.env.PUBLIC_URL}/cv.pdf`} download="Adithyu_R_CV.pdf"
+                            className="dwnld-btn" type="button">
                             <span className="dwnld-btn-txt">Download CV</span>
                             <span className="dwnld-btn-icn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" className="svg"><path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z" /><path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z" /><path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z" /></svg></span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -302,42 +342,64 @@ function Home() {
                 </div>
                 <div className='flex flex-col md:flex-row mt-5'>
                     <div className='w-full bg-slate-100 md:w-1/3'>
-                        <a className='flex items-center pt-10 px-5'>
+                        <a className='flex items-center pt-10 px-5 hover:text-yellow-500'>
                             <FaLocationDot size={18}/> &nbsp; Kollam, Kerala
                         </a>
-                        <a className='flex items-center pt-5 px-5'>
+                        <a 
+                            href='tel:+919048382436'
+                            className='flex items-center pt-5 px-5 hover:text-blue-500'>
                             <FaPhoneAlt size={18}/> &nbsp; +91 9048382436
                         </a>
-                        <a className='flex items-center pt-5 px-5'>
+                        <a 
+                            href='mailto:adithyur@gmail.com'
+                            target="_blank"
+                            className='flex items-center pt-5 px-5 hover:text-red-500'>
                             <MdEmail size={18}/> &nbsp; adithyur@gmail.com
+                        </a>
+                        <a 
+                            href="https://wa.me/919048382436" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className='flex items-center pt-5 px-5 hover:text-green-500'>
+                            <IoLogoWhatsapp size={18}/> &nbsp; +91 9048382436
                         </a>
                         <div className='mt-10'>
                             <h1 className='flex justify-center pb-5'>
                                 FOLLOW ME
                             </h1>
                             <div className='flex justify-center mb-5'>
-                                <a className='pr-12'>
+                                <a 
+                                    href='https://www.linkedin.com/in/adithyu-r-b54199224/'
+                                    target="_blank"
+                                    className='pr-12 hover:text-blue-500'>
                                     <FaLinkedinIn size={18} />
                                 </a>
-                                <a>
+                                <a 
+                                    href='https://github.com/adithyur'
+                                    target="_blank"
+                                    className='hover:text-blue-500'>
                                     <FaGithub size={18}/>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div className='w-full md:w-2/3 md:ms-10 border border-2'>
-                        <form className="space-y-4 mx-10 my-10">
+                        <form onSubmit={handleSubmit} className="space-y-4 mx-10 my-10">
                             <div className="flex flex-col md:flex-row md:space-x-4">
                                 <input
                                     type='text'
                                     name='name'
                                     placeholder='name'
+                                    value={formData.name}
+                                    onChange={handleChange}
                                     className='w-full md:w-1/2 rounded-md border-0 px-3.5 py-2.5 bg-gray-100 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6'
                                 />
                                 <input
                                     type='email'
                                     name='email'
                                     placeholder='email'
+                                    value={formData.email}
+                                    onChange={handleChange}
                                     className='w-full md:w-1/2 rounded-md border-0 px-3.5 py-2.5 bg-gray-100 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 mt-4 md:mt-0'
                                 />
                             </div>
@@ -345,10 +407,12 @@ function Home() {
                                 rows="4"
                                 name='message'
                                 placeholder='message'
+                                value={formData.message}
+                                onChange={handleChange} 
                                 className="block w-full rounded-md border-0 px-3.5 py-2 bg-gray-100 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
                             />
                             <div className="btn-conteiner mt-10">
-                                <a className="btn-content mt-5" href="#">
+                                <button type='submit' className="btn-content mt-5" href="#">
                                     <span className="btn-title">SEND MESSAGE</span>
                                     <span className="icon-arrow">
                                     <svg width="66px" height="25px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -359,7 +423,7 @@ function Home() {
                                         </g>
                                     </svg>
                                     </span> 
-                                </a>
+                                </button>
                             </div>
                         </form>
                     </div>
