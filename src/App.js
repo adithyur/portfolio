@@ -1,9 +1,21 @@
 import Home from "./component/Home";
+import Spinner from "./component/Spinner";
 
 function App() {
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+        setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+}, []);
+
   return (
     <div className="App">
-      <Home/>
+      {loading ? <Spinner/> : <Home/>}
     </div>
   );
 }
