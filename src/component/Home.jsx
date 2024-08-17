@@ -191,7 +191,7 @@ function Home() {
             {/* ABOUT */}
             <div id='about' ref={el => sections.current['#about'] = el} className='flex sm:mt-20 mt-16'>
                 <div className='flex flex-col items-center h-2/3 w-auto hidden md:block'>
-                    <img src={`${process.env.PUBLIC_URL}/adithyu.jpeg`} className='h-2/3 w-auto'/>
+                    <img src={`${process.env.PUBLIC_URL}/adithyu.jpg`} className='h-2/3 w-auto'/>
                     <div className='flex flex-col items-center justify-center mt-4'>
                         <h1 className='tracking-wide font-semibold subpixel-antialiased	text-2xl '>ADITHYU R</h1>
                         <p className='rounded-full border border-2 py-3 px-6 border-slate-100 mt-4 text-gray-700'>
@@ -205,7 +205,7 @@ function Home() {
                         <div className="line ms-5 bg-gray-500"></div>
                     </div>
                     <div className='flex flex-col w-auto sm:block md:hidden mt-10'>
-                        <img src={`${process.env.PUBLIC_URL}/adithyu.jpeg`} className='-ms-1'/>
+                        <img src={`${process.env.PUBLIC_URL}/adithyu.jpg`} className='-ms-1'/>
                         <div className='flex flex-col items-center justify-center mt-4'>
                             <h1 className='tracking-wide font-semibold subpixel-antialiased	text-2xl '>ADITHYU R</h1>
                             <p className='rounded-full border border-2 py-3 px-6 border-slate-100 mt-4 text-gray-700'>
