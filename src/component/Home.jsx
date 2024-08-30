@@ -259,7 +259,7 @@ function Home() {
 
                             </ul>
                         </div>
-                        <div className="p-4 md:flex-1 mt-4 md:mt-0 md:ml-4">
+                        <div className="py-4 pe-4 md:flex-1 mt-4 md:mt-0 md:ml-4 lg:ml-0">
                             <div className='flex items-center'>
                                 <h2 className="tracking-widest font-bold">Education</h2>
                                 <div className="line ms-2 bg-gray-500 h-1"></div>
@@ -267,15 +267,15 @@ function Home() {
                             <ul className="border-l-2 border-gray-500 pl-4 relative mt-4 md:mt-5 pr-2 md:-mr-2">
                                 <li className="relative pl-4 mb-2">
                                     <span className="absolute -left-6 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white border border-gray-500 rounded-full"></span>
-                                    <div className='flex md:flex-col xl:flex-row justify-between mt-2 items-center'>
-                                        <p className='bg-gray-200 flex items-center rounded-full px-2 h-8'>2021 - 2023</p>
+                                    <div className='flex md:flex-col xl:flex-row justify-between mt-2 items-center w-56'>
+                                        <p className='bg-gray-200 flex items-center rounded-full px-2 text-[12px] h-8'>2021 <span>- </span> 2023</p>
                                         <p className='font-bold text-gray-800'>University of Kerala <br/> <span className='font-normal text-gray-500'>Master Degree</span></p>
                                     </div>
                                 </li>
                                 <li className="relative pl-4 mt-10">
                                     <span className="absolute -left-6 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white border border-gray-500 rounded-full"></span>
                                     <div className='flex md:flex-col xl:flex-row justify-between mt-2 items-center'>
-                                        <p className='bg-gray-200 flex items-center rounded-full px-2 h-8'>2018 - 2021</p>
+                                        <p className='bg-gray-200 flex items-center rounded-full px-2 text-[12px] h-8'>2018 <span>-</span> 2021</p>
                                         <p className='font-bold text-gray-800'>University of Kerala <br/> <span className='font-normal text-gray-500'>Bachelor Degree</span></p>
                                     </div>
                                 </li>
