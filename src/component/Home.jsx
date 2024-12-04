@@ -316,6 +316,21 @@ function Home() {
                         </a>
                     </div>
                     <div className='flex flex-col md:flex-row gap-5'>
+                        <a href="https://alwin-portfolio-mauve.vercel.app/" target="_blank" rel="noopener noreferrer" className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl w-full md:w-11/12 px-8 pb-8 pt-40 mt-10 group">
+                            <img src={`${process.env.PUBLIC_URL}/alwin-portfolio.png`} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
+                            <h3 className="z-10 mt-3 text-3xl font-bold text-white">Potfolio</h3>
+                            <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300 ">personal-potfolio</div>
+                        </a>
+
+                        <a href="https://janasakthipublicschool.com/" target="_blank" rel="noopener noreferrer" className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl w-full md:w-11/12 px-8 pb-8 pt-40 mt-10 group">
+                            <img src={`${process.env.PUBLIC_URL}/janasakthi.png`} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
+                            <h3 className="z-10 mt-3 text-3xl font-bold text-white">Janasakthi</h3>
+                            <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">Public School</div>
+                        </a>
+                    </div>
+                    <div className='flex flex-col md:flex-row gap-5'>
                         <a href="https://shop-hub-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl w-full md:w-11/12 px-8 pb-8 pt-40 mt-10 group">
                             <img src={`${process.env.PUBLIC_URL}/shophub.png`} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
                             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
