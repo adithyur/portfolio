@@ -10,6 +10,13 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ozlon from "../static/images/ozlon.png";
+import kiran from "../static/images/kiran.png"
+import alwin from "../static/images/alwin-portfolio.png"
+import aswin from "../static/images/aswin-portfolio.png"
+import shophub from "../static/images/shophub.png"
+import todo from "../static/images/todo.png"
+import jansakthi from "../static/images/janasakthi.png"
 import './styles.css';
 
 
@@ -303,28 +310,29 @@ function Home() {
                 <div className='flex flex-col'>
                     <div className='flex flex-col md:flex-row gap-5'>
                         <a href="https://www.ozlonlearningapp.com" target="_blank" rel="noopener noreferrer" className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl w-full md:w-11/12 px-8 pb-8 pt-40 mt-10 group">
-                            <img src={`${process.env.PUBLIC_URL}/ozlon.png`} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
+                            <img src={ozlon} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
                             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
                             <h3 className="z-10 mt-3 text-3xl font-bold text-white">OZLON</h3>
                             <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">Learning App</div>
                         </a>
                         <a href="https://www.kiranironbuilders.in" target="_blank" rel="noopener noreferrer" className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl w-full md:w-11/12 px-8 pb-8 pt-40 mt-10 group">
-                            <img src={`${process.env.PUBLIC_URL}/kiran.png`} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
+                            <img src={kiran} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
                             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
                             <h3 className="z-10 mt-3 text-3xl font-bold text-white">KIRAN</h3>
                             <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">Iron Builders</div>
                         </a>
                     </div>
                     <div className='flex flex-col md:flex-row gap-5'>
+                        
                         <a href="https://alwin-portfolio-mauve.vercel.app/" target="_blank" rel="noopener noreferrer" className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl w-full md:w-11/12 px-8 pb-8 pt-40 mt-10 group">
-                            <img src={`${process.env.PUBLIC_URL}/alwin-portfolio.png`} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
+                            <img src={alwin} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
                             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
                             <h3 className="z-10 mt-3 text-3xl font-bold text-white">Potfolio</h3>
                             <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300 ">personal-potfolio</div>
                         </a>
 
                         <a href="https://janasakthipublicschool.com/" target="_blank" rel="noopener noreferrer" className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl w-full md:w-11/12 px-8 pb-8 pt-40 mt-10 group">
-                            <img src={`${process.env.PUBLIC_URL}/janasakthi.png`} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
+                            <img src={jansakthi} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
                             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
                             <h3 className="z-10 mt-3 text-3xl font-bold text-white">Janasakthi</h3>
                             <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">Public School</div>
@@ -332,17 +340,26 @@ function Home() {
                     </div>
                     <div className='flex flex-col md:flex-row gap-5'>
                         <a href="https://shop-hub-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl w-full md:w-11/12 px-8 pb-8 pt-40 mt-10 group">
-                            <img src={`${process.env.PUBLIC_URL}/shophub.png`} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
+                            <img src={shophub} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
                             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
                             <h3 className="z-10 mt-3 text-3xl font-bold text-white">SHOPHUB</h3>
                             <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300 ">e-commerce</div>
                         </a>
 
                         <a href="https://to-do-frontend-flax.vercel.app/" target="_blank" rel="noopener noreferrer" className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl w-full md:w-11/12 px-8 pb-8 pt-40 mt-10 group">
-                            <img src={`${process.env.PUBLIC_URL}/todo.png`} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
+                            <img src={todo} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
                             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
                             <h3 className="z-10 mt-3 text-3xl font-bold text-white">TO-DO</h3>
                             <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">Task reminder</div>
+                        </a>
+                    </div>
+
+                    <div className='flex flex-col md:flex-row gap-5'>
+                        <a href="https://aswin-portfolio-fawn.vercel.app/" target="_blank" rel="noopener noreferrer" className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl w-full md:w-1/2 px-8 pb-8 pt-40 mt-10 group">
+                            <img src={aswin} className="absolute inset-0 h-full w-full object-cover filter grayscale transition-all duration-300 ease-in-out group-hover:grayscale-0" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40" />
+                            <h3 className="z-10 mt-3 text-3xl font-bold text-white">Potfolio</h3>
+                            <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300 ">personal-potfolio</div>
                         </a>
                     </div>
                 </div>
