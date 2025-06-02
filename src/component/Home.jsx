@@ -527,7 +527,8 @@ function Home() {
           <div className="flex flex-col">
             <div className="flex flex-col md:flex-row gap-5">
               <a
-                href="https://www.ozlonlearningapp.com"
+              href="https://ozlon-learning-app.vercel.app/"
+                //href="https://www.ozlonlearningapp.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl w-full md:w-11/12 px-8 pb-8 pt-40 mt-10 group"
@@ -545,7 +546,8 @@ function Home() {
                 </div>
               </a>
               <a
-                href="https://www.kiranironbuilders.in"
+               href="https://welder-blue.vercel.app/"
+                //href="https://www.kiranironbuilders.in"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl w-full md:w-11/12 px-8 pb-8 pt-40 mt-10 group"
@@ -804,7 +806,7 @@ function Home() {
 
         {/* FOOTER */}
         <div className="flex justify-center mt-10 border border-t-2 border-x-0">
-          <p className="py-8">Copyright @2024, </p>
+          <p className="py-8">Copyright &copy; {new Date().getFullYear()}, </p>
         </div>
       </div>
     </div>
