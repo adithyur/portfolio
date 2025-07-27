@@ -806,8 +806,20 @@ function Home() {
 
         {/* FOOTER */}
         <div className="flex justify-center mt-10 border border-t-2 border-x-0">
-          <p className="py-8">Copyright &copy; {new Date().getFullYear()}, </p>
+          <p className="py-8">
+            &copy; {new Date().getFullYear()}{' '}
+            <a
+              href="https://adithyu-r.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Adithyu
+            </a>
+            , All rights reserved
+          </p>
         </div>
+
       </div>
     </div>
   );
